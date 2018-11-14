@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title></title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+<style type="text/css">
+
+body{
+background-image: url(images/registerbg1.png);
+background-size: cover;
+background-repeat: no-repeat;
+overflow-x: hidden;
+}
+
+.bg{
+cursor: pointer;
+background: linear-gradient(90deg, #318be3, #04befe );
+color: #fff;
+font-size: 12px;
+
+}
+.table1 {
+margin: auto;
+}
+
+tr td {
+padding: 11px;
+margin-bottom: 1px;
+}
+
+.btn1{
+color: #fff;
+width: 199px;
+padding: 4px;
+border-radius: 3px;
+background-color: #337ab7;
+}
+
+p {
+
+text-align: center;
+padding: 5px;
+margin-top: 5px;
+margin-bottom: 0: border-radius: 3px!important;
+}
+</style>
+</head>
+
+<body>
+<div class="table table-stripped table1" style="width: 421px" align="center">
+<div class="panel panel-primary ">
+<div class="panel-heading bg">
+<h3 class="panel-title"> <strong>CALCULATOR </strong></h3>
+</div>
+<table class="" border="1 solid blue" align="center" cellpadding="5" cellspacing="5" width="400">
+<tr>
+<td>
+<button type="button" class="bg-primary text-white btn1"> <strong> Loan Amount </strong></button>
+</td>
+<td>
+<input type="text" name="" id="textAmount">
+</td>
+</tr>
+<tr>
+<td>
+<button type="button" class="bg-primary text-white btn1"> <strong>Loan Length in month </strong></button>
+</td>
+<td>
+<input type="text" name="" id="textmonth">
+</td>
+</tr>
+<tr>
+<td>
+<button type="button" class="bg-primary text-white btn1"><strong> Interest Rate </strong> </button>
+</td>
+<td>
+<input type="text" name="" id="textRate">
+</td>
+</tr>
+<tr>
+<td>
+<button type="button" class="bg-primary text-white btn1"> <strong> Monthly Payment </strong></button>
+</td>
+<td>
+<input type="text" name="" id="textPayment">
+</td>
+</tr>
+<tr>
+<td align="center">
+<button type="button" class="btn btn-success" id="Calculate" onclick="Calculator()"><strong> Calculate </strong></button>
+</td>
+<td align="center">
+<button type="button" class="btn btn-danger" id="Cancel"> <strong> Cancel </strong></button>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<script type="text/javascript">
+
+
+function Calculator(argument) {
+
+var textAmount = document.getElementById('textAmount').value;
+var textmonth = document.getElementById('textmonth').value;
+var textRate = document.getElementById('textRate').value;
+textAmount = parseFloat(textAmount);
+textmonth = parseInt(textmonth);
+textRate = parseFloat(textRate);
+var textPayment = document.getElementById('textPayment');
+var Calculate = document.getElementById('Calculate');
+var Cancel = document.getElementById('Cancel');
+
+var monthlyInterestRatio = (textRate / 100) / 12;
+var monthlyInterest = (monthlyInterestRatio * textAmount);
+var top = Math.pow((1 + monthlyInterestRatio), textmonth);
+var bottom = top - 1;
+var sp = top / bottom;
+var emi = ((textAmount * monthlyInterestRatio) * sp);
+var result = emi.toFixed(2);
+var totalAmount = emi * textmonth;
+var yearlyInteret = totalAmount - textAmount;
+var downPayment = textAmount * (20 / 100);
+
+textPayment.value = result;
+
+
+}
+
+
+
+</script>
+</body>
+
+</html>
